@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6F327C08081A8C7C8B08140C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F7B536F008EC61217C0BFC /* libPods.a */; };
+		D3DAE87B1CE3A5EC00696F75 /* AuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */; };
+		D3DC73DF1CCEC49F00C1DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73DE1CCEC49F00C1DF18 /* main.m */; };
+		D3DC73E21CCEC49F00C1DF18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73E11CCEC49F00C1DF18 /* AppDelegate.m */; };
+		D3DC73E81CCEC49F00C1DF18 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DC73E61CCEC49F00C1DF18 /* Main.storyboard */; };
+		D3DC73EA1CCEC49F00C1DF18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3DC73E91CCEC49F00C1DF18 /* Assets.xcassets */; };
+		D3DC73ED1CCEC49F00C1DF18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3DC73EB1CCEC49F00C1DF18 /* LaunchScreen.storyboard */; };
+		D3DC73F81CCEC4FE00C1DF18 /* AuthenticationConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73F71CCEC4FE00C1DF18 /* AuthenticationConstants.m */; };
+		D3DC73FB1CCEC63A00C1DF18 /* ConnectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73FA1CCEC63A00C1DF18 /* ConnectViewController.m */; };
+		D3DC73FE1CD1267600C1DF18 /* SendMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73FD1CD1267600C1DF18 /* SendMailViewController.m */; };
+		D3DC74001CD16C7800C1DF18 /* EmailBody.html in Resources */ = {isa = PBXBuildFile; fileRef = D3DC73FF1CD16C7800C1DF18 /* EmailBody.html */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		65F7B536F008EC61217C0BFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProvider.h; sourceTree = "<group>"; };
+		D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProvider.m; sourceTree = "<group>"; };
+		D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "O365-iOS-Microsoft-Graph-SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3DC73DE1CCEC49F00C1DF18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D3DC73E01CCEC49F00C1DF18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D3DC73E11CCEC49F00C1DF18 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D3DC73E71CCEC49F00C1DF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D3DC73E91CCEC49F00C1DF18 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D3DC73EC1CCEC49F00C1DF18 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D3DC73EE1CCEC49F00C1DF18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D3DC73F61CCEC4FE00C1DF18 /* AuthenticationConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationConstants.h; sourceTree = "<group>"; };
+		D3DC73F71CCEC4FE00C1DF18 /* AuthenticationConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationConstants.m; sourceTree = "<group>"; };
+		D3DC73F91CCEC63A00C1DF18 /* ConnectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectViewController.h; sourceTree = "<group>"; };
+		D3DC73FA1CCEC63A00C1DF18 /* ConnectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectViewController.m; sourceTree = "<group>"; };
+		D3DC73FC1CD1267600C1DF18 /* SendMailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendMailViewController.h; sourceTree = "<group>"; };
+		D3DC73FD1CD1267600C1DF18 /* SendMailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendMailViewController.m; sourceTree = "<group>"; };
+		D3DC73FF1CD16C7800C1DF18 /* EmailBody.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = EmailBody.html; sourceTree = "<group>"; };
+		F4DEBC45D9FE8CB23350506F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D3DC73D71CCEC49F00C1DF18 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F327C08081A8C7C8B08140C /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		48789700023AB65E520FF8EE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F4DEBC45D9FE8CB23350506F /* Pods.debug.xcconfig */,
+				027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B4F53F2BC1FB1DA7593EABE0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				65F7B536F008EC61217C0BFC /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3DC73D11CCEC49F00C1DF18 = {
+			isa = PBXGroup;
+			children = (
+				D3DC73DC1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */,
+				D3DC73DB1CCEC49F00C1DF18 /* Products */,
+				48789700023AB65E520FF8EE /* Pods */,
+				B4F53F2BC1FB1DA7593EABE0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D3DC73DB1CCEC49F00C1DF18 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D3DC73DC1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */ = {
+			isa = PBXGroup;
+			children = (
+				D3FBFF031CEB747F00727130 /* Application */,
+				D3FBFF041CEB748E00727130 /* Controllers */,
+				D3FBFF051CEB749600727130 /* Views */,
+				D3FBFF061CEB749D00727130 /* Resources */,
+				D3FBFF071CEB74AA00727130 /* Authentication */,
+				D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */,
+			);
+			path = "O365-iOS-Microsoft-Graph-SDK";
+			sourceTree = "<group>";
+		};
+		D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73DE1CCEC49F00C1DF18 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D3FBFF031CEB747F00727130 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73F61CCEC4FE00C1DF18 /* AuthenticationConstants.h */,
+				D3DC73F71CCEC4FE00C1DF18 /* AuthenticationConstants.m */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
+		D3FBFF041CEB748E00727130 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73F91CCEC63A00C1DF18 /* ConnectViewController.h */,
+				D3DC73FA1CCEC63A00C1DF18 /* ConnectViewController.m */,
+				D3DC73FC1CD1267600C1DF18 /* SendMailViewController.h */,
+				D3DC73FD1CD1267600C1DF18 /* SendMailViewController.m */,
+				D3DC73E01CCEC49F00C1DF18 /* AppDelegate.h */,
+				D3DC73E11CCEC49F00C1DF18 /* AppDelegate.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		D3FBFF051CEB749600727130 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73E61CCEC49F00C1DF18 /* Main.storyboard */,
+				D3DC73EB1CCEC49F00C1DF18 /* LaunchScreen.storyboard */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		D3FBFF061CEB749D00727130 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D3DC73EE1CCEC49F00C1DF18 /* Info.plist */,
+				D3DC73E91CCEC49F00C1DF18 /* Assets.xcassets */,
+				D3DC73FF1CD16C7800C1DF18 /* EmailBody.html */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D3FBFF071CEB74AA00727130 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */,
+				D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */,
+			);
+			name = Authentication;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D3DC73D91CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "O365-iOS-Microsoft-Graph-SDK" */;
+			buildPhases = (
+				D68F6980362A8EAE6702AB91 /* Check Pods Manifest.lock */,
+				D3DC73D61CCEC49F00C1DF18 /* Sources */,
+				D3DC73D71CCEC49F00C1DF18 /* Frameworks */,
+				D3DC73D81CCEC49F00C1DF18 /* Resources */,
+				4FF3905E5DAF2AF3CDC126AC /* Embed Pods Frameworks */,
+				819E2F63675BAB6B67D5501A /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "O365-iOS-Microsoft-Graph-SDK";
+			productName = "O365-iOS-Microsoft-Graph-SDK";
+			productReference = D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D3DC73D21CCEC49F00C1DF18 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = Microsoft;
+				TargetAttributes = {
+					D3DC73D91CCEC49F00C1DF18 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+				};
+			};
+			buildConfigurationList = D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "O365-iOS-Microsoft-Graph-SDK" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D3DC73D11CCEC49F00C1DF18;
+			productRefGroup = D3DC73DB1CCEC49F00C1DF18 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D3DC73D91CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D3DC73D81CCEC49F00C1DF18 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3DC73ED1CCEC49F00C1DF18 /* LaunchScreen.storyboard in Resources */,
+				D3DC73EA1CCEC49F00C1DF18 /* Assets.xcassets in Resources */,
+				D3DC73E81CCEC49F00C1DF18 /* Main.storyboard in Resources */,
+				D3DC74001CD16C7800C1DF18 /* EmailBody.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FF3905E5DAF2AF3CDC126AC /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		819E2F63675BAB6B67D5501A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D68F6980362A8EAE6702AB91 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D3DC73D61CCEC49F00C1DF18 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D3DC73FE1CD1267600C1DF18 /* SendMailViewController.m in Sources */,
+				D3DC73FB1CCEC63A00C1DF18 /* ConnectViewController.m in Sources */,
+				D3DAE87B1CE3A5EC00696F75 /* AuthenticationProvider.m in Sources */,
+				D3DC73F81CCEC4FE00C1DF18 /* AuthenticationConstants.m in Sources */,
+				D3DC73E21CCEC49F00C1DF18 /* AppDelegate.m in Sources */,
+				D3DC73DF1CCEC49F00C1DF18 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D3DC73E61CCEC49F00C1DF18 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3DC73E71CCEC49F00C1DF18 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D3DC73EB1CCEC49F00C1DF18 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D3DC73EC1CCEC49F00C1DF18 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D3DC73EF1CCEC49F00C1DF18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D3DC73F01CCEC49F00C1DF18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D3DC73F21CCEC49F00C1DF18 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F4DEBC45D9FE8CB23350506F /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.O365-iOS-Microsoft-Graph-SDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D3DC73F31CCEC49F00C1DF18 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.O365-iOS-Microsoft-Graph-SDK";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "O365-iOS-Microsoft-Graph-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3DC73EF1CCEC49F00C1DF18 /* Debug */,
+				D3DC73F01CCEC49F00C1DF18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "O365-iOS-Microsoft-Graph-SDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D3DC73F21CCEC49F00C1DF18 /* Debug */,
+				D3DC73F31CCEC49F00C1DF18 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D3DC73D21CCEC49F00C1DF18 /* Project object */;
+}
