@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qd3-LY-hCI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Qd3-LY-hCI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -56,6 +56,7 @@
                     <navigationItem key="navigationItem" title="Microsoft Graph Connect" id="Nzz-Nw-lku"/>
                     <connections>
                         <outlet property="activityIndicator" destination="exP-dw-75J" id="e2r-gT-16B"/>
+                        <outlet property="appTitle" destination="Nzz-Nw-lku" id="A95-XY-Fsr"/>
                         <outlet property="connectButton" destination="fMa-0R-6ly" id="abz-3J-MBN"/>
                         <segue destination="PcX-2l-orc" kind="show" identifier="showSendMail" id="PmI-Ka-xui"/>
                     </connections>
@@ -144,6 +145,9 @@ This is where the status is displayed</string>
                     </navigationItem>
                     <connections>
                         <outlet property="activityIndicator" destination="yvC-YP-Gsb" id="JAB-wJ-NBw"/>
+                        <outlet property="appTitle" destination="LJk-nF-GtD" id="cXb-Vt-quk"/>
+                        <outlet property="descriptionLabel" destination="y2r-bi-f4z" id="pr8-7n-vt2"/>
+                        <outlet property="disconnectButton" destination="gZA-Xf-oSy" id="olh-wM-map"/>
                         <outlet property="emailTextField" destination="psQ-tX-N4f" id="b9h-FW-PMV"/>
                         <outlet property="headerLabel" destination="RKd-Sy-HQK" id="QHz-M1-mDk"/>
                         <outlet property="sendMailButton" destination="BbR-j0-XhP" id="LPV-Ua-FKO"/>

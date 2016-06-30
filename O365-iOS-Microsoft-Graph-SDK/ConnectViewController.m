@@ -11,6 +11,7 @@
 
 @interface ConnectViewController ()
 
+@property (strong, nonatomic) IBOutlet UINavigationItem *appTitle;
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) IBOutlet UIButton *connectButton;
 @property (strong, nonatomic) AuthenticationProvider *authProvider;
@@ -25,6 +26,10 @@
     [super viewDidLoad];
     // Do view setup here.
     _authProvider = [[AuthenticationProvider alloc]init];
+    
+    self.appTitle.title = NSLocalizedString(@"GRAPH_TITLE", comment: "");
+    [self.connectButton setTitle:(NSLocalizedString(@"CONNECT", comment: "")) forState:normal];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -48,7 +53,7 @@
                         NSLog(@"Authentication successful.");
                     }
                     else{
-                        NSLog(@"Authentication failed - %@", error.localizedDescription);
+                        NSLog(NSLocalizedString(@"CHECK_LOG_ERROR", error.localizedDescription));
                         [self showLoadingUI:NO];
                         
                     };
@@ -69,14 +74,14 @@
     
     if (loading){
         [self.activityIndicator startAnimating];
-        [self.connectButton setTitle:@"Connecting..." forState:UIControlStateNormal];
+        [self.connectButton setTitle:(NSLocalizedString(@"CONNECTING", comment: "")) forState:normal];
         self.connectButton.enabled = NO;
     }
     
     else{
         
         [self.activityIndicator stopAnimating];
-        [self.connectButton setTitle:@"Connect" forState:UIControlStateNormal];
+        [self.connectButton setTitle:(NSLocalizedString(@"CONNECT", comment: "")) forState:normal];
         self.connectButton.enabled = YES;
     }
     

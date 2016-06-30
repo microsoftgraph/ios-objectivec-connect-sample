@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F327C08081A8C7C8B08140C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F7B536F008EC61217C0BFC /* libPods.a */; };
+		D32E34271D25B9690036AA14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D32E34261D25B9690036AA14 /* Localizable.strings */; };
 		D3DAE87B1CE3A5EC00696F75 /* AuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */; };
 		D3DC73DF1CCEC49F00C1DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73DE1CCEC49F00C1DF18 /* main.m */; };
 		D3DC73E21CCEC49F00C1DF18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73E11CCEC49F00C1DF18 /* AppDelegate.m */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		65F7B536F008EC61217C0BFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D32E34261D25B9690036AA14 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProvider.h; sourceTree = "<group>"; };
 		D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProvider.m; sourceTree = "<group>"; };
 		D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "O365-iOS-Microsoft-Graph-SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +150,7 @@
 				D3DC73EE1CCEC49F00C1DF18 /* Info.plist */,
 				D3DC73E91CCEC49F00C1DF18 /* Assets.xcassets */,
 				D3DC73FF1CD16C7800C1DF18 /* EmailBody.html */,
+				D32E34261D25B9690036AA14 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D32E34271D25B9690036AA14 /* Localizable.strings in Resources */,
 				D3DC73ED1CCEC49F00C1DF18 /* LaunchScreen.storyboard in Resources */,
 				D3DC73EA1CCEC49F00C1DF18 /* Assets.xcassets in Resources */,
 				D3DC73E81CCEC49F00C1DF18 /* Main.storyboard in Resources */,

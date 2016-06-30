@@ -18,7 +18,9 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSString *emailAddress;
 @property (strong, nonatomic) MSGraphClient *graphClient;
-
+@property (strong, nonatomic) IBOutlet UINavigationItem *appTitle;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *disconnectButton;
+@property (strong, nonatomic) IBOutlet UITextView *descriptionLabel;
 
 @end
 
@@ -29,6 +31,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title =  NSLocalizedString(@"GRAPH_TITLE", comment: "");
+    self.disconnectButton.title = NSLocalizedString(@"DISCONNECT", comment: "");
+    self.descriptionLabel.text = NSLocalizedString(@"DESCRIPTION", comment: "");
+    [self.sendMailButton setTitle:(NSLocalizedString(@"SEND", comment: "")) forState:normal];
     
     [MSGraphClient setAuthenticationProvider:self.authenticationProvider.authProvider];
     self.graphClient = [MSGraphClient client];
@@ -62,15 +69,15 @@
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {
         if(!error){
             NSLog(@"response %@", response);
-            NSLog(@"error %@", error);
+            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.statusTextView.text = @"Check your inbox, you have a new message. :)";
+                self.statusTextView.text = NSLocalizedString(@"SEND_SUCCESS", comment: "");
             });
         }
         else {
-            NSLog(@"Error sending mail - %@", error.localizedDescription);
-            self.statusTextView.text = @"The email could not be sent. Check the log for errors.";
+            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            self.statusTextView.text = NSLocalizedString(@"SEND_FAILURE", comment: "");
         }
     }];
     
@@ -85,13 +92,14 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.emailAddress = response.mail;
                 self.emailTextField.text = self.emailAddress;
-                self.headerLabel.text = [NSString stringWithFormat:@"Hi %@!", response.displayName];
+                self.headerLabel.text = [NSString stringWithFormat:(NSLocalizedString(@"HI_USER", comment "")), response.displayName];
+                self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_SUCCESS", comment: "");
             });
 
         }
         else{
-            self.statusTextView.text = @"Unable to retrieve user account information, see log for more details.";
-            NSLog(@"Retrieval of user account information failed - %@", error.localizedDescription);
+            self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
+            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
         }
     }];
 }
@@ -108,7 +116,7 @@
     NSMutableArray *toRecipients = [[NSMutableArray alloc]init];
     [toRecipients addObject:toRecipient];
     
-    message.subject = @"Mail received from the Office 365 iOS Microsoft Graph SDK Sample";
+    message.subject = NSLocalizedString(@"MAIL_SUBJECT", comment: "");
     
     MSGraphItemBody *emailBody = [[MSGraphItemBody alloc]init];
     NSString *htmlContentPath = [[NSBundle mainBundle] pathForResource:@"EmailBody" ofType:@"html"];
