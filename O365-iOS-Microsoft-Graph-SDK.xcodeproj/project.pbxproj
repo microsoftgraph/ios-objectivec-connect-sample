@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6F327C08081A8C7C8B08140C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F7B536F008EC61217C0BFC /* libPods.a */; };
+		3E5968A48D40AE0661E043BE /* libPods-O365-iOS-Microsoft-Graph-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */; };
 		D32E34271D25B9690036AA14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D32E34261D25B9690036AA14 /* Localizable.strings */; };
 		D3DAE87B1CE3A5EC00696F75 /* AuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */; };
 		D3DC73DF1CCEC49F00C1DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73DE1CCEC49F00C1DF18 /* main.m */; };
@@ -23,7 +23,10 @@
 
 /* Begin PBXFileReference section */
 		027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig"; sourceTree = "<group>"; };
 		65F7B536F008EC61217C0BFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig"; sourceTree = "<group>"; };
+		CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-O365-iOS-Microsoft-Graph-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32E34261D25B9690036AA14 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProvider.h; sourceTree = "<group>"; };
 		D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProvider.m; sourceTree = "<group>"; };
@@ -50,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F327C08081A8C7C8B08140C /* libPods.a in Frameworks */,
+				3E5968A48D40AE0661E043BE /* libPods-O365-iOS-Microsoft-Graph-SDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +65,8 @@
 			children = (
 				F4DEBC45D9FE8CB23350506F /* Pods.debug.xcconfig */,
 				027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */,
+				8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */,
+				2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -70,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				65F7B536F008EC61217C0BFC /* libPods.a */,
+				CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -171,12 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "O365-iOS-Microsoft-Graph-SDK" */;
 			buildPhases = (
-				D68F6980362A8EAE6702AB91 /* Check Pods Manifest.lock */,
+				D68F6980362A8EAE6702AB91 /* [CP] Check Pods Manifest.lock */,
 				D3DC73D61CCEC49F00C1DF18 /* Sources */,
 				D3DC73D71CCEC49F00C1DF18 /* Frameworks */,
 				D3DC73D81CCEC49F00C1DF18 /* Resources */,
-				4FF3905E5DAF2AF3CDC126AC /* Embed Pods Frameworks */,
-				819E2F63675BAB6B67D5501A /* Copy Pods Resources */,
+				4FF3905E5DAF2AF3CDC126AC /* [CP] Embed Pods Frameworks */,
+				819E2F63675BAB6B67D5501A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,44 +241,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4FF3905E5DAF2AF3CDC126AC /* Embed Pods Frameworks */ = {
+		4FF3905E5DAF2AF3CDC126AC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		819E2F63675BAB6B67D5501A /* Copy Pods Resources */ = {
+		819E2F63675BAB6B67D5501A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D68F6980362A8EAE6702AB91 /* Check Pods Manifest.lock */ = {
+		D68F6980362A8EAE6702AB91 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,7 +406,7 @@
 		};
 		D3DC73F21CCEC49F00C1DF18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F4DEBC45D9FE8CB23350506F /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
@@ -412,7 +418,7 @@
 		};
 		D3DC73F31CCEC49F00C1DF18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */;
+			baseConfigurationReference = 2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
