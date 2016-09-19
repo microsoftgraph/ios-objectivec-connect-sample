@@ -2,7 +2,7 @@
 
 Microsoft Graph is a unified endpoint for accessing data, relationships and insights that come from the Microsoft Cloud. This sample shows how to connect and authenticate to it, and then call mail and user APIs through the [Microsoft Graph SDK for iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
 
-> Note: Try out the [Microsoft Graph App Registration Portal](Disambiguation?ru=https%3a%2f%2fapps.dev.microsoft.com%2f) page which simplifies registration so you can get this sample running faster.
+> Note: Try out the [Microsoft Graph App Registration Portal](https://apps.dev.microsoft.com) page which simplifies registration so you can get this sample running faster.
 
 ## Prerequisites
 * [Xcode](https://developer.apple.com/xcode/downloads/) from Apple. **This sample has been tested on version 7.3.1 of XCode.**
@@ -10,7 +10,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
 
      > Note: If you already have a subscription, the previous link sends you to a page with the message *Sorry, you can’t add that to your current account*. In that case, use an account from your current Office 365 subscription.    
-* A client id from the registered app at [Microsoft Graph App Registration Portal](Disambiguation?ru=https%3a%2f%2fapps.dev.microsoft.com%2f)
+* A client id from the registered app at [Microsoft Graph App Registration Portal](https://apps.dev.microsoft.com)
 * To make requests, an **MSAuthenticationProvider** must be provided which is capable of authenticating HTTPS requests with an appropriate OAuth 2.0 bearer token. We will be using [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) for a sample implementation of MSAuthenticationProvider that can be used to jump-start your project. See the below section **Code of Interest** for more information.
 
 
