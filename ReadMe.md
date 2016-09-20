@@ -6,7 +6,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 
 ## Prerequisites
 *  Download and install [Xcode 7.3.1](http://adcdownload.apple.com/Developer_Tools/Xcode_7.3.1/Xcode_7.3.1.dmg)  on your Mac.
-	> Note: The sample was tested on Xcode 7.3.1.  If you are using XCode 8, you may hit an issue with iOS Simulator. We’re working on this. In the meantime, you will have to use a physical device to run the sample.
+	> Note: The sample was tested on Xcode 7.3.1.  If you are using XCode 8, you may hit an issue with iOS Simulator. We’re working on this. In the meantime, you will have to use a physical device to run the sample. You'll need an active Apple developer subscription to get this download.
 
 * Installation of [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)  as a dependency manager.
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
