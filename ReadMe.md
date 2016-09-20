@@ -5,7 +5,9 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 > Note: Try out the [Microsoft Graph App Registration Portal](https://apps.dev.microsoft.com) page which simplifies registration so you can get this sample running faster.
 
 ## Prerequisites
-* [Xcode](https://developer.apple.com/xcode/downloads/) from Apple. **This sample has been tested on version 7.3.1 of XCode.**
+*  Download and install [Xcode 7.3.1](http://adcdownload.apple.com/Developer_Tools/Xcode_7.3.1/Xcode_7.3.1.dmg)  on your Mac.
+	> Note: The sample was tested on Xcode 7.3.1.  If you are using XCode 8, you may hit an issue with iOS Simulator. We’re working on this. In the meantime, you will have to use a physical device to run the sample.
+
 * Installation of [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)  as a dependency manager.
 * A Microsoft work or personal email account such as Office 365, or outlook.com, hotmail.com, etc. You can sign up for [an Office 365 Developer subscription](https://aka.ms/devprogramsignup) that includes the resources that you need to start building Office 365 apps.
 
@@ -17,13 +19,19 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 ## Running this sample in Xcode
 
 1. Clone this repository
+2. If it is not already installed, run the following commands from the **Terminal** app to install and set up the CocoaPods dependency manager.
+
+		sudo gem install cocoapods
+	
+		pod setup
+
 2. Use CocoaPods to import the Microsoft Graph SDK and authentication dependencies:
 
 		pod 'MSGraphSDK'
 		pod 'MSGraphSDK-NXOAuth2Adapter'
 
 
- This sample app already contains a podfile that will get the pods into  the project. Simply navigate to the project From **Terminal** and run:
+ This sample app already contains a podfile that will get the pods into  the project. Simply navigate to the project root where the podfile is and from **Terminal** run:
 
         pod install
 
