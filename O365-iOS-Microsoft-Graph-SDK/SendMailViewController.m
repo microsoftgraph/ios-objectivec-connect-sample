@@ -69,7 +69,6 @@
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {
         if(!error){
             NSLog(@"response %@", response);
-            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.statusTextView.text = NSLocalizedString(@"SEND_SUCCESS", comment: "");
@@ -92,7 +91,7 @@
     [[[self.graphClient me]request]getWithCompletion:^(MSGraphUser *response, NSError *error) {
         if(!error){
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.emailAddress = response.mail;
+                self.emailAddress = response.userPrincipalName;
                 self.emailTextField.text = self.emailAddress;
                 self.headerLabel.text = [NSString stringWithFormat:(NSLocalizedString(@"HI_USER", comment "")), response.displayName];
                 self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_SUCCESS", comment: "");
