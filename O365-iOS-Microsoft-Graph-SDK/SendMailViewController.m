@@ -76,8 +76,10 @@
             });
         }
         else {
-            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
-            self.statusTextView.text = NSLocalizedString(@"SEND_FAILURE", comment: "");
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+                self.statusTextView.text = NSLocalizedString(@"SEND_FAILURE", comment: "");
+            });
         }
     }];
     
@@ -98,8 +100,10 @@
 
         }
         else{
-            self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
-            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
+                NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            });
         }
     }];
 }
