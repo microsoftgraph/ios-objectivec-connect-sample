@@ -1,36 +1,43 @@
-# Exemplo de conexão com o Office 365 para iOS usando o SDK do Microsoft Graph
+# <a name="office-365-connect-sample-for-ios-using-the-microsoft-graph-sdk"></a>Exemplo de conexão com o Office 365 para iOS usando o SDK do Microsoft Graph
 
 O Microsoft Graph é um ponto de extremidade unificado para acessar dados, relações e ideias que vêm do Microsoft Cloud. Este exemplo mostra como realizar a conexão e a autenticação no Microsoft Graph e, em seguida, chamar APIs de mala direta e usuário por meio do [SDK do Microsoft Graph para iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
 
-> Observação: Experimente a página [Portal de Registro do Aplicativo Microsoft Graph](https://graph.microsoft.io/en-us/app-registration) que simplifica o registro para que você possa executar este exemplo com mais rapidez.
+> Observação: Experimente a página [Portal de Registro de Aplicativos do Microsoft Graph](https://apps.dev.microsoft.com) que simplifica o registro para que você possa executar este exemplo com mais rapidez.
 
-## Pré-requisitos
-* [Xcode](https://developer.apple.com/xcode/downloads/) da Apple
+## <a name="prerequisites"></a>Pré-requisitos
+* Baixe o [Xcode](https://developer.apple.com/xcode/downloads/) da Apple
+
 * Instalação do [CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html) como um gerente de dependências.
 * Uma conta de email comercial ou pessoal da Microsoft como o Office 365, ou outlook.com, hotmail.com, etc. Inscreva-se em uma [Assinatura do Office 365 para Desenvolvedor](https://aka.ms/devprogramsignup) que inclua os recursos necessários para começar a criar aplicativos do Office 365.
 
      > Observação: Caso já tenha uma assinatura, o link anterior direciona você para uma página com a mensagem *Não é possível adicioná-la à sua conta atual*. Nesse caso, use uma conta de sua assinatura atual do Office 365.    
-* Uma ID de cliente do aplicativo registrado no [Portal de Registro do Aplicativo do Microsoft Graph](https://graph.microsoft.io/en-us/app-registration)
-* Para realizar solicitações de autenticação, um **MSAuthenticationProvider** deve ser fornecido para autenticar solicitações HTTPS com um token de portador OAuth 2.0 apropriado. Usaremos [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) para uma implementação de exemplo de MSAuthenticationProvider que pode ser usada para acelerar seu projeto. Confira a seção **Código de Interesse** abaixo para obter mais informações.
+* Uma ID de cliente do aplicativo registrado no [Portal de Registro de Aplicativos do Microsoft Graph](https://apps.dev.microsoft.com)
+* Para realizar solicitações de autenticação, um **MSAuthenticationProvider** deve ser fornecido para autenticar solicitações HTTPS com um token de portador OAuth 2.0 apropriado. Usaremos [msgraph-sdk-ios-nxoauth2-adapter](https://github.com/microsoftgraph/msgraph-sdk-ios-nxoauth2-adapter) para uma implementação de exemplo de MSAuthenticationProvider que pode ser usado para iniciar rapidamente o projeto. Para saber mais, confira a seção abaixo **Código de Interesse**
 
 
-## Executar este exemplo em Xcode
+## <a name="running-this-sample-in-xcode"></a>Executando este exemplo em Xcode
 
 1. Clonar este repositório
+2. Se não estiver instalado, execute os seguintes comandos do aplicativo **Terminal** para instalar e configurar o gerenciador de dependências do CocoaPods.
+
+        sudo gem install cocoapods
+    
+        pod setup
+
 2. Use o CocoaPods para importar as dependências de autenticação e o SDK do Microsoft Graph:
 
         pod 'MSGraphSDK'
         pod 'MSGraphSDK-NXOAuth2Adapter'
 
 
- Este aplicativo de exemplo já contém um podfile que colocará os pods no projeto. Simplesmente navegue até o projeto do **Terminal** e execute:
+ Este aplicativo de exemplo já contém um podfile que colocará os pods no projeto. Basta acessar a raiz do projeto em que o podfile está armazenado e no **Terminal** executar:
 
         pod install
 
-   Para saber mais, confira o artigo **Usar o CocoaPods** em [Recursos Adicionais](#recursos-adicionais)
+   Para saber mais, confira o artigo **Usar o CocoaPods** em [Recursos Adicionais](#AdditionalResources)
 
 3. Abrir **O365-iOS-Microsoft-Graph-SDK.xcworkspace**
-4. Abra **AuthenticationConstants.m**. Observe que você pode adicionar o valor de **ID de Cliente** do processo de registro na parte superior do arquivo.
+4. Abra **AuthenticationConstants.m**. Observe que você pode adicionar o valor de **ClientID** do processo de registro, na parte superior do arquivo.
 
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
@@ -40,9 +47,9 @@ O Microsoft Graph é um ponto de extremidade unificado para acessar dados, rela�
 5. Execute o exemplo. Você será solicitado a conectar/autenticar uma conta de email comercial ou pessoal e, em seguida, poderá enviar um email a essa conta ou a outra conta de email selecionada.
 
 
-##Código de Interesse
+##<a name="code-of-interest"></a>Código de Interesse
 
-Todo código de autenticação pode ser visualizado no arquivo **AuthenticationProvider.m**. Usamos um exemplo de implementação do MSAuthenticationProvider estendida do [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) para oferecer suporte a aplicativos nativos registrados, atualização automática de tokens de acesso e recurso de logout:
+Todo código de autenticação pode ser visualizado no arquivo **AuthenticationProvider.m**. Usamos um exemplo de implementação do MSAuthenticationProvider estendida do [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) para fornecer suporte de logon a aplicativos nativos registrados, atualização automática de tokens de acesso e recursos de logoff:
 
         [[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
             if (!error) {
@@ -62,22 +69,22 @@ Depois que o provedor de autenticação estiver definido, podemos criar e inicia
 
 Para obter mais informações, incluindo código para chamar outros serviços, como o OneDrive, confira o [SDK do Microsoft Graph para iOS](https://github.com/microsoftgraph/msgraph-sdk-ios)
 
-## Perguntas e comentários
+## <a name="questions-and-comments"></a>Perguntas e comentários
 
 Gostaríamos de saber sua opinião sobre o projeto de conexão com o Office 365 para iOS usando o Microsoft Graph. Você pode nos enviar suas perguntas e sugestões por meio da seção [Issues](https://github.com/microsoftgraph/iOS-objectivec-connect-sample/issues) deste repositório.
 
 As perguntas sobre o desenvolvimento do Office 365 em geral devem ser postadas no [Stack Overflow](http://stackoverflow.com/questions/tagged/Office365+API). Não deixe de marcar as perguntas ou comentários com [Office365] e [MicrosoftGraph].
 
-## Colaboração
+## <a name="contributing"></a>Colaboração
 Será preciso assinar um [Contributor License Agreement (Contrato de Licença de Colaborador)](https://cla.microsoft.com/) antes de enviar a solicitação pull. Para concluir o CLA (Contributor License Agreement), você deve enviar uma solicitação através do formulário e assinar eletronicamente o CLA quando receber o email com o link para o documento.
 
 Este projeto adotou o [Código de Conduta do Código Aberto da Microsoft](https://opensource.microsoft.com/codeofconduct/). Para saber mais, confira as [Perguntas frequentes do Código de Conduta](https://opensource.microsoft.com/codeofconduct/faq/) ou contate [opencode@microsoft.com](mailto:opencode@microsoft.com) se tiver outras dúvidas ou comentários.
 
-## Recursos adicionais
+## <a name="additional-resources"></a>Recursos adicionais
 
 * [Centro de Desenvolvimento do Office](http://dev.office.com/)
 * [Página de visão geral do Microsoft Graph](https://graph.microsoft.io)
 * [Usando o CocoaPods](https://guides.cocoapods.org/using/using-cocoapods.html)
 
-## Direitos autorais
+## <a name="copyright"></a>Direitos autorais
 Copyright © 2016 Microsoft. Todos os direitos reservados.
