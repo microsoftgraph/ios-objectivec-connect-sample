@@ -200,6 +200,16 @@
     
     message.toRecipients = toRecipients;
     
+    MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    NSData *image =  UIImagePNGRepresentation(self.userPicture);
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [[NSString alloc] initWithData:image encoding:NSUTF8StringEncoding];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
     return message;
     
 }
