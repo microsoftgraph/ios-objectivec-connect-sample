@@ -51,7 +51,7 @@
         } else {
             
             //get the test image out of the resources
-            //self.userPicture =
+            self.userPicture = [UIImage imageNamed:(@"test.png")];
         }
         [self uploadPictureToOneDrive:(self.userPicture) completion:^(NSString *webUrl, NSError *error) {
             if (!error) {
