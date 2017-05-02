@@ -18,6 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (strong, nonatomic) NSString *emailAddress;
 @property (strong, nonatomic) MSGraphClient *graphClient;
+@property (strong, nonatomic) NSString *pictureWebUrl;
 @property (strong, nonatomic) IBOutlet UINavigationItem *appTitle;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *disconnectButton;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionLabel;
@@ -40,6 +41,23 @@
     [MSGraphClient setAuthenticationProvider:self.authenticationProvider.authProvider];
     self.graphClient = [MSGraphClient client];
     [self getUserInfo];
+    
+    [self getUserPicture:(self.emailAddress)  completion:^(UIImage *image, NSError *error) {
+     
+        [self uploadPictureToOneDrive:(image) completion:^(NSString *webUrl, NSError *error) {
+            if (!error) {
+                self.pictureWebUrl = webUrl;
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+                    self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
+                });
+
+            }
+ 
+        }];
+    }];
+    
     
 }
 
@@ -104,6 +122,28 @@
                 NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
             });
         }
+    }];
+}
+
+-(void) uploadPictureToOneDrive: (UIImage *) image completion:(void(^) (NSString*, NSError*))completionBlock{
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } else {
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 self.statusTextView.text =  NSLocalizedString(@"USER_GET_PICTURE_FAILURE", comment: "");
+                 NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+             });
+         }
     }];
 }
 
