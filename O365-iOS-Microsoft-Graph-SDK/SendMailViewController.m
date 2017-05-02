@@ -107,6 +107,22 @@
     }];
 }
 
+-(void) getUserPicture: (NSString *)url completion:(void(^) (UIImage*, NSError*))completionBlock {
+    [[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } else{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.statusTextView.text =  NSLocalizedString(@"USER_GET_PICTURE_FAILURE", comment: "");
+                NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            });
+        }
+    }];
+}
+
 //Create a sample test message to send to specified user account
 -(MSGraphMessage*) getSampleMessage{
     MSGraphMessage *message = [[MSGraphMessage alloc]init];

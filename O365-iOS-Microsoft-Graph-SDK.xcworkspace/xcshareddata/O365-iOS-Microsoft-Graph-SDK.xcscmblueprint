@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "8C5781ECE1580644A71AD3DF94D4EECFE6387A36",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E578364CA79A995DDB1916E193A9960A5CEB2B9B" : 9223372036854775807,
+    "8C5781ECE1580644A71AD3DF94D4EECFE6387A36" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AFD4B935-AF74-4B08-A5E0-88A10EB049AF",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E578364CA79A995DDB1916E193A9960A5CEB2B9B" : "microsoft-authentication-library-for-objc\/",
+    "8C5781ECE1580644A71AD3DF94D4EECFE6387A36" : "ios-objectivec-connect-sample\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "O365-iOS-Microsoft-Graph-SDK",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "O365-iOS-Microsoft-Graph-SDK.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/microsoftgraph\/ios-objectivec-connect-sample.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8C5781ECE1580644A71AD3DF94D4EECFE6387A36"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/AzureAD\/microsoft-authentication-library-for-objc.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E578364CA79A995DDB1916E193A9960A5CEB2B9B"
+    }
+  ]
+}
