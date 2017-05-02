@@ -47,21 +47,25 @@
         
         if (!error) {
             self.userPicture = image;
-            [self uploadPictureToOneDrive:(image) completion:^(NSString *webUrl, NSError *error) {
-                if (!error) {
-                    self.pictureWebUrl = webUrl;
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
-                        self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
-                    });
-                    
-                }
-                
-            }];
-        
+         
         } else {
+            
+            //get the test image out of the resources
+            //self.userPicture =
         }
+        [self uploadPictureToOneDrive:(self.userPicture) completion:^(NSString *webUrl, NSError *error) {
+            if (!error) {
+                self.pictureWebUrl = webUrl;
+            } else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+                    self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
+                });
+                
+            }
+            
+        }];
+
     }];
     
     
