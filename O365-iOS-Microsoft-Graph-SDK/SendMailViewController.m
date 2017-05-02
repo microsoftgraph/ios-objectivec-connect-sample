@@ -19,6 +19,7 @@
 @property (strong, nonatomic) NSString *emailAddress;
 @property (strong, nonatomic) MSGraphClient *graphClient;
 @property (strong, nonatomic) NSString *pictureWebUrl;
+@property (strong, nonatomic) UIImage *userPicture;
 @property (strong, nonatomic) IBOutlet UINavigationItem *appTitle;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *disconnectButton;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionLabel;
@@ -43,19 +44,24 @@
     [self getUserInfo];
     
     [self getUserPicture:(self.emailAddress)  completion:^(UIImage *image, NSError *error) {
-     
-        [self uploadPictureToOneDrive:(image) completion:^(NSString *webUrl, NSError *error) {
-            if (!error) {
-                self.pictureWebUrl = webUrl;
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
-                    self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
-                });
-
-            }
- 
-        }];
+        
+        if (!error) {
+            self.userPicture = image;
+            [self uploadPictureToOneDrive:(image) completion:^(NSString *webUrl, NSError *error) {
+                if (!error) {
+                    self.pictureWebUrl = webUrl;
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+                        self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
+                    });
+                    
+                }
+                
+            }];
+        
+        } else {
+        }
     }];
     
     
@@ -182,6 +188,9 @@
     NSString *htmlContentString = [NSString stringWithContentsOfFile:htmlContentPath encoding:NSUTF8StringEncoding error:nil];
     
     emailBody.content = htmlContentString;
+    NSString *replaceString = @"a href=";
+    replaceString = [replaceString stringByAppendingString:(self.pictureWebUrl)];
+    emailBody.content = [emailBody.content stringByReplacingOccurrencesOfString:(@"a href=%s") withString:(replaceString)];
     emailBody.contentType = [MSGraphBodyType html];
     message.body = emailBody;
     
