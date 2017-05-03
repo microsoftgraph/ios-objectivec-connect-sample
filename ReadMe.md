@@ -42,7 +42,7 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
 
-    > Note: You'll notice that the following permission scopes have been configured for this project: **"https://graph.microsoft.com/Mail.Send", "https://graph.microsoft.com/User.Read", "offline_access"**. The service calls used in this project, sending a mail to your mail account and retrieving some profile information (Display Name, Email Address) require these permissions for the app to run properly.
+    > Note: You'll notice that the following permission scopes have been configured for this project: **`@"openid, profile, Mail.ReadWrite,mail.send,Files.ReadWrite,User.ReadBasic.All"`**. The service calls used in this project, sending a mail to your mail account, uploading a picture to OneDrive, and retrieving some profile information (Display Name, Email Address, profile picture) require these permissions for the app to run properly.
 
 5. Run the sample. You'll be asked to connect/authenticate to a work or personal mail account, and then you can send a mail to that account, or to another selected email account.
 
@@ -59,13 +59,61 @@ All authentication code can be viewed in the **AuthenticationProvider.m** file. 
 		}];
 
 
-Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendMailViewcontroller.m** we can assemble a mail request and send it using the following code:
+Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendMailViewcontroller.m** we can get the user profile picture, upload it to OneDrive, assemble a mail request with picture attachment and send it using the following code:
 
+### Get the user's profile picture
+
+```objective c
+[[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } 
+    }];
+```
+### Upload the picture to OneDrive
+
+```objective c
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } 
+    }];
+
+```
+### Add picture attachment to a new email message
+
+```objective c
+   MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
+```
+
+### Send the mail message
+
+```objective c
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
     }];
-
+```
 
 For more information, including code to call into other services like OneDrive, see the [Microsoft Graph SDK for iOS](https://github.com/microsoftgraph/msgraph-sdk-ios)
 
