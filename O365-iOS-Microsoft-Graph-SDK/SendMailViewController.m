@@ -36,6 +36,7 @@
     
     self.title =  NSLocalizedString(@"GRAPH_TITLE", comment: "");
     self.disconnectButton.title = NSLocalizedString(@"DISCONNECT", comment: "");
+    self.sendMailButton.enabled = false;
     self.descriptionLabel.text = NSLocalizedString(@"DESCRIPTION", comment: "");
     [self.sendMailButton setTitle:(NSLocalizedString(@"SEND", comment: "")) forState:normal];
     
@@ -49,13 +50,16 @@
             self.userPicture = image;
          
         } else {
-            
-            //get the test image out of the resources
+            //get the test image out of the project resources
             self.userPicture = [UIImage imageNamed:(@"test.png")];
         }
         [self uploadPictureToOneDrive:(self.userPicture) completion:^(NSString *webUrl, NSError *error) {
             if (!error) {
                 self.pictureWebUrl = webUrl;
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.sendMailButton.enabled = true;
+                });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
@@ -100,6 +104,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.statusTextView.text = NSLocalizedString(@"SEND_SUCCESS", comment: "");
+                self.descriptionLabel.text = @"Check your inbox. You have a new message :)";
             });
         }
         else {
@@ -201,11 +206,10 @@
     message.toRecipients = toRecipients;
     
     MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
-    NSData *image =  UIImagePNGRepresentation(self.userPicture);
     fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
     fileAttachment.contentType = @"image/png";
     
-    NSString *decodedString = [[NSString alloc] initWithData:image encoding:NSUTF8StringEncoding];
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
     
     fileAttachment.contentBytes = decodedString;
     fileAttachment.name = @"me.png";
