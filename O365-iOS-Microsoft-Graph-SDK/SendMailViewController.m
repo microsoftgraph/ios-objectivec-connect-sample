@@ -42,36 +42,37 @@
     
     [MSGraphClient setAuthenticationProvider:self.authenticationProvider.authProvider];
     self.graphClient = [MSGraphClient client];
-    [self getUserInfo];
-    
-    [self getUserPicture:(self.emailAddress)  completion:^(UIImage *image, NSError *error) {
-        
+    [self getUserInfo:(self.emailAddress) completion:^( NSError *error) {
         if (!error) {
-            self.userPicture = image;
-         
-        } else {
-            //get the test image out of the project resources
-            self.userPicture = [UIImage imageNamed:(@"test.png")];
+            [self getUserPicture:(self.emailAddress)  completion:^(UIImage *image, NSError *error) {
+                
+                if (!error) {
+                    self.userPicture = image;
+                    
+                } else {
+                    //get the test image out of the project resources
+                    self.userPicture = [UIImage imageNamed:(@"test.png")];
+                }
+                [self uploadPictureToOneDrive:(self.userPicture) completion:^(NSString *webUrl, NSError *error) {
+                    if (!error) {
+                        self.pictureWebUrl = webUrl;
+                        
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            self.sendMailButton.enabled = true;
+                        });
+                    } else {
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+                            self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
+                        });
+                        
+                    }
+                    
+                }];
+                
+            }];
         }
-        [self uploadPictureToOneDrive:(self.userPicture) completion:^(NSString *webUrl, NSError *error) {
-            if (!error) {
-                self.pictureWebUrl = webUrl;
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    self.sendMailButton.enabled = true;
-                });
-            } else {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
-                    self.statusTextView.text = NSLocalizedString(@"PICTURE_UPLOAD_FAILURE", comment: "");
-                });
-                
-            }
-            
-        }];
-
     }];
-    
     
 }
 
@@ -120,7 +121,8 @@
 
 #pragma mark - Helper Methods
 //Retrieve the logged in user's display name and email address
--(void) getUserInfo {
+-(void) getUserInfo: (NSString *)url completion:(void(^) ( NSError*))completionBlock{
+    
     [[[self.graphClient me]request]getWithCompletion:^(MSGraphUser *response, NSError *error) {
         if(!error){
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -130,17 +132,21 @@
                 self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_SUCCESS", comment: "");
             });
 
+            completionBlock(nil);
         }
         else{
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
                 NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
             });
+            completionBlock(error);
         }
     }];
+    
 }
 
 -(void) uploadPictureToOneDrive: (UIImage *) image completion:(void(^) (NSString*, NSError*))completionBlock{
+    
     NSData *data = UIImagePNGRepresentation(image);
     [[[[[[[self.graphClient me]
           drive]
@@ -159,21 +165,21 @@
                  NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
              });
          }
-    }];
+     }];
+
 }
 
 -(void) getUserPicture: (NSString *)url completion:(void(^) (UIImage*, NSError*))completionBlock {
+    
     [[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
         //code
         if (!error) {
             NSData *data = [NSData dataWithContentsOfURL:location];
             UIImage *img = [[UIImage alloc] initWithData:data];
-                            completionBlock(img, error);
+            completionBlock(img, error);
         } else{
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.statusTextView.text =  NSLocalizedString(@"USER_GET_PICTURE_FAILURE", comment: "");
-                NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
-            });
+            completionBlock(nil, error);
+
         }
     }];
 }
@@ -183,6 +189,8 @@
     MSGraphMessage *message = [[MSGraphMessage alloc]init];
     MSGraphRecipient *toRecipient = [[MSGraphRecipient alloc]init];
     MSGraphEmailAddress *email = [[MSGraphEmailAddress alloc]init];
+    
+    //need to get email text field for send to!
     
     email.address = self.emailAddress;
     toRecipient.emailAddress = email;
