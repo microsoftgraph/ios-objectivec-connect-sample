@@ -8,8 +8,8 @@
 @implementation AuthenticationConstants
 
 // You will set your application's clientId
-NSString * const kClientId    = @"3700a5ef-cee9-498e-a7e3-cbf701966331";
-NSString * const kScopes = @"https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite";
+NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+NSString * const kScopes = @"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite";
 
 
 @end
