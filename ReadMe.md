@@ -39,16 +39,19 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 3. Open **ios-objectivec-sample.xcworkspace**
 4. Open **AuthenticationConstants.m**. You'll see that the **ClientID** from the registration process can be added to the top of the file.:
 
-```objectivec
+   ```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
- ```       
+   ```
 
-    > Note: You'll notice that the following permission scopes have been configured for this project: 
-`@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"`
+
+    You'll notice that the following permission scopes have been configured for this project: 
+
+```@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"```
     
 
-    The service calls used in this project, sending a mail to your mail account, uploading a picture to OneDrive, and retrieving some profile information (Display Name, Email Address, profile picture) require these permissions for the app to run properly.
+    
+>Note: The service calls used in this project, sending a mail to your mail account, uploading a picture to OneDrive, and retrieving some profile information (Display Name, Email Address, profile picture) require these permissions for the app to run properly.
 
 5. Run the sample. You'll be asked to connect/authenticate to a work or personal mail account, and then you can send a mail to that account, or to another selected email account.
 
