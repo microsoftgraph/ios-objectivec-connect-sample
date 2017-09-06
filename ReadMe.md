@@ -36,20 +36,28 @@ Microsoft Graph is a unified endpoint for accessing data, relationships and insi
 
    For more information, see **Using CocoaPods** in [Additional Resources](#AdditionalResources)
 
-3. Open **O365-iOS-Microsoft-Graph-SDK.xcworkspace**
+3. Open **ios-objectivec-sample.xcworkspace**
 4. Open **AuthenticationConstants.m**. You'll see that the **ClientID** from the registration process can be added to the top of the file.:
 
+```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+ ```       
 
-    > Note: You'll notice that the following permission scopes have been configured for this project: **`@"openid, profile, Mail.ReadWrite,mail.send,Files.ReadWrite,User.ReadBasic.All"`**. The service calls used in this project, sending a mail to your mail account, uploading a picture to OneDrive, and retrieving some profile information (Display Name, Email Address, profile picture) require these permissions for the app to run properly.
+    > Note: You'll notice that the following permission scopes have been configured for this project: 
+`@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"`
+    
+
+    The service calls used in this project, sending a mail to your mail account, uploading a picture to OneDrive, and retrieving some profile information (Display Name, Email Address, profile picture) require these permissions for the app to run properly.
 
 5. Run the sample. You'll be asked to connect/authenticate to a work or personal mail account, and then you can send a mail to that account, or to another selected email account.
 
 
-##Code of Interest
+## Code of Interest
 
 All authentication code can be viewed in the **AuthenticationProvider.m** file. We use a sample implementation of MSAuthenticationProvider extended from [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) to provide login support for registered native apps, automatic refreshing of access tokens, and logout functionality:
+
+```objectivec
 
 		[[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
     		if (!error) {
@@ -57,13 +65,13 @@ All authentication code can be viewed in the **AuthenticationProvider.m** file. 
         	self.client = [MSGraphClient client];
    			 }
 		}];
-
+```
 
 Once the authentication provider is set, we can create and initialize a client object (MSGraphClient) that will be used to make calls against the Microsoft Graph service endpoint (mail and users). In **SendMailViewcontroller.m** we can get the user profile picture, upload it to OneDrive, assemble a mail request with picture attachment and send it using the following code:
 
 ### Get the user's profile picture
 
-```objective c
+```objectivec
 [[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
         //code
         if (!error) {
@@ -75,7 +83,7 @@ Once the authentication provider is set, we can create and initialize a client o
 ```
 ### Upload the picture to OneDrive
 
-```objective c
+```objectivec
     NSData *data = UIImagePNGRepresentation(image);
     [[[[[[[self.graphClient me]
           drive]
@@ -94,7 +102,7 @@ Once the authentication provider is set, we can create and initialize a client o
 ```
 ### Add picture attachment to a new email message
 
-```objective c
+```objectivec
    MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
     fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
     fileAttachment.contentType = @"image/png";
@@ -108,7 +116,7 @@ Once the authentication provider is set, we can create and initialize a client o
 
 ### Send the mail message
 
-```objective c
+```objectivec
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
