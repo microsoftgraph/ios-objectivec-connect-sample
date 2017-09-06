@@ -12,9 +12,9 @@
     "E578364CA79A995DDB1916E193A9960A5CEB2B9B" : "microsoft-authentication-library-for-objc\/",
     "8C5781ECE1580644A71AD3DF94D4EECFE6387A36" : "ios-objectivec-connect-sample\/"
   },
-  "DVTSourceControlWorkspaceBlueprintNameKey" : "O365-iOS-Microsoft-Graph-SDK",
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ios-objectivec-connect-sample",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
-  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "O365-iOS-Microsoft-Graph-SDK.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ios-objectivec-connect-sample.xcworkspace",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/microsoftgraph\/ios-objectivec-connect-sample.git",

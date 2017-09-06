@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3E5968A48D40AE0661E043BE /* libPods-O365-iOS-Microsoft-Graph-SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */; };
+		5E2631FDDEA6393A3C7AD399 /* libPods-ios-objectivec-connect-sample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A23959EF9BF537936B2556A /* libPods-ios-objectivec-connect-sample.a */; };
 		D32E34271D25B9690036AA14 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D32E34261D25B9690036AA14 /* Localizable.strings */; };
 		D3DAE87B1CE3A5EC00696F75 /* AuthenticationProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */; };
 		D3DC73DF1CCEC49F00C1DF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D3DC73DE1CCEC49F00C1DF18 /* main.m */; };
@@ -23,10 +24,13 @@
 
 /* Begin PBXFileReference section */
 		027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		1B67B02D36F3E5C97A1FFC05 /* Pods-ios-objectivec-connect-sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-objectivec-connect-sample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ios-objectivec-connect-sample/Pods-ios-objectivec-connect-sample.release.xcconfig"; sourceTree = "<group>"; };
 		2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig"; path = "Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig"; sourceTree = "<group>"; };
+		2E831AF7AAE5F4914073107B /* Pods-ios-objectivec-connect-sample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-objectivec-connect-sample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ios-objectivec-connect-sample/Pods-ios-objectivec-connect-sample.debug.xcconfig"; sourceTree = "<group>"; };
 		65F7B536F008EC61217C0BFC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig"; sourceTree = "<group>"; };
-		96FEA8F21D92860F007963C0 /* O365-iOS-Microsoft-Graph-SDK.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "O365-iOS-Microsoft-Graph-SDK.entitlements"; sourceTree = "<group>"; };
+		96FEA8F21D92860F007963C0 /* ios-objectivec-connect-sample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-objectivec-connect-sample.entitlements"; sourceTree = "<group>"; };
+		9A23959EF9BF537936B2556A /* libPods-ios-objectivec-connect-sample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ios-objectivec-connect-sample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-O365-iOS-Microsoft-Graph-SDK.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D32E34261D25B9690036AA14 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProvider.h; sourceTree = "<group>"; };
@@ -55,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E5968A48D40AE0661E043BE /* libPods-O365-iOS-Microsoft-Graph-SDK.a in Frameworks */,
+				5E2631FDDEA6393A3C7AD399 /* libPods-ios-objectivec-connect-sample.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +73,8 @@
 				027C6680FAE500DDD3E097DF /* Pods.release.xcconfig */,
 				8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */,
 				2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */,
+				2E831AF7AAE5F4914073107B /* Pods-ios-objectivec-connect-sample.debug.xcconfig */,
+				1B67B02D36F3E5C97A1FFC05 /* Pods-ios-objectivec-connect-sample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -77,6 +84,7 @@
 			children = (
 				65F7B536F008EC61217C0BFC /* libPods.a */,
 				CB6721F956C1B8D5FBBFEEDB /* libPods-O365-iOS-Microsoft-Graph-SDK.a */,
+				9A23959EF9BF537936B2556A /* libPods-ios-objectivec-connect-sample.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -102,7 +110,7 @@
 		D3DC73DC1CCEC49F00C1DF18 /* ios-objectivec-connect-sample */ = {
 			isa = PBXGroup;
 			children = (
-				96FEA8F21D92860F007963C0 /* O365-iOS-Microsoft-Graph-SDK.entitlements */,
+				96FEA8F21D92860F007963C0 /* ios-objectivec-connect-sample.entitlements */,
 				D3FBFF031CEB747F00727130 /* Application */,
 				D3FBFF041CEB748E00727130 /* Controllers */,
 				D3FBFF051CEB749600727130 /* Views */,
@@ -201,7 +209,7 @@
 		D3DC73D21CCEC49F00C1DF18 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = Microsoft;
 				TargetAttributes = {
 					D3DC73D91CCEC49F00C1DF18 = {
@@ -260,7 +268,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-objectivec-connect-sample/Pods-ios-objectivec-connect-sample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		819E2F63675BAB6B67D5501A /* [CP] Copy Pods Resources */ = {
@@ -275,7 +283,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-O365-iOS-Microsoft-Graph-SDK/Pods-O365-iOS-Microsoft-Graph-SDK-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ios-objectivec-connect-sample/Pods-ios-objectivec-connect-sample-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D68F6980362A8EAE6702AB91 /* [CP] Check Pods Manifest.lock */ = {
@@ -284,13 +292,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ios-objectivec-connect-sample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -344,8 +355,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -387,8 +400,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -413,12 +428,12 @@
 		};
 		D3DC73F21CCEC49F00C1DF18 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C2BA958479F5FE1E76B534F /* Pods-O365-iOS-Microsoft-Graph-SDK.debug.xcconfig */;
+			baseConfigurationReference = 2E831AF7AAE5F4914073107B /* Pods-ios-objectivec-connect-sample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "O365-iOS-Microsoft-Graph-SDK/O365-iOS-Microsoft-Graph-SDK.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ios-objectivec-connect-sample/ios-objectivec-connect-sample.entitlements";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
+				INFOPLIST_FILE = "ios-objectivec-connect-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.ios-objectivec-connect-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -427,12 +442,12 @@
 		};
 		D3DC73F31CCEC49F00C1DF18 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2DD4BF8A5C636065F182E7F1 /* Pods-O365-iOS-Microsoft-Graph-SDK.release.xcconfig */;
+			baseConfigurationReference = 1B67B02D36F3E5C97A1FFC05 /* Pods-ios-objectivec-connect-sample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "O365-iOS-Microsoft-Graph-SDK/O365-iOS-Microsoft-Graph-SDK.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "ios-objectivec-connect-sample/ios-objectivec-connect-sample.entitlements";
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
+				INFOPLIST_FILE = "ios-objectivec-connect-sample/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.ios-objectivec-connect-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";

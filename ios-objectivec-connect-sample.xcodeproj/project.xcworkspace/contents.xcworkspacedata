@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:O365-iOS-Microsoft-Graph-SDK.xcodeproj">
+      location = "self:ios-objectivec-connect-sample.xcodeproj">
    </FileRef>
 </Workspace>
