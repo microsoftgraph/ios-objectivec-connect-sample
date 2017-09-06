@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:O365-iOS-Microsoft-Graph-SDK.xcodeproj">
+      location = "group:/Users/johnaustin/iOS/ios-objectivec-connect-sample/ios-objectivec-connect-sample.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

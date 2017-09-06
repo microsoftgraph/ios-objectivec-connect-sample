@@ -31,7 +31,7 @@
 		D32E34261D25B9690036AA14 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		D3DAE8791CE3A5EC00696F75 /* AuthenticationProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationProvider.h; sourceTree = "<group>"; };
 		D3DAE87A1CE3A5EC00696F75 /* AuthenticationProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationProvider.m; sourceTree = "<group>"; };
-		D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "O365-iOS-Microsoft-Graph-SDK.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3DC73DA1CCEC49F00C1DF18 /* ios-objectivec-connect-sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-objectivec-connect-sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3DC73DE1CCEC49F00C1DF18 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D3DC73E01CCEC49F00C1DF18 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D3DC73E11CCEC49F00C1DF18 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		D3DC73D11CCEC49F00C1DF18 = {
 			isa = PBXGroup;
 			children = (
-				D3DC73DC1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */,
+				D3DC73DC1CCEC49F00C1DF18 /* ios-objectivec-connect-sample */,
 				D3DC73DB1CCEC49F00C1DF18 /* Products */,
 				48789700023AB65E520FF8EE /* Pods */,
 				B4F53F2BC1FB1DA7593EABE0 /* Frameworks */,
@@ -94,12 +94,12 @@
 		D3DC73DB1CCEC49F00C1DF18 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */,
+				D3DC73DA1CCEC49F00C1DF18 /* ios-objectivec-connect-sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D3DC73DC1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */ = {
+		D3DC73DC1CCEC49F00C1DF18 /* ios-objectivec-connect-sample */ = {
 			isa = PBXGroup;
 			children = (
 				96FEA8F21D92860F007963C0 /* O365-iOS-Microsoft-Graph-SDK.entitlements */,
@@ -110,7 +110,7 @@
 				D3FBFF071CEB74AA00727130 /* Authentication */,
 				D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */,
 			);
-			path = "O365-iOS-Microsoft-Graph-SDK";
+			path = "ios-objectivec-connect-sample";
 			sourceTree = "<group>";
 		};
 		D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */ = {
@@ -175,9 +175,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D3DC73D91CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */ = {
+		D3DC73D91CCEC49F00C1DF18 /* ios-objectivec-connect-sample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "O365-iOS-Microsoft-Graph-SDK" */;
+			buildConfigurationList = D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "ios-objectivec-connect-sample" */;
 			buildPhases = (
 				D68F6980362A8EAE6702AB91 /* [CP] Check Pods Manifest.lock */,
 				D3DC73D61CCEC49F00C1DF18 /* Sources */,
@@ -190,9 +190,9 @@
 			);
 			dependencies = (
 			);
-			name = "O365-iOS-Microsoft-Graph-SDK";
+			name = "ios-objectivec-connect-sample";
 			productName = "O365-iOS-Microsoft-Graph-SDK";
-			productReference = D3DC73DA1CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK.app */;
+			productReference = D3DC73DA1CCEC49F00C1DF18 /* ios-objectivec-connect-sample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -214,7 +214,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "O365-iOS-Microsoft-Graph-SDK" */;
+			buildConfigurationList = D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "ios-objectivec-connect-sample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -227,7 +227,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D3DC73D91CCEC49F00C1DF18 /* O365-iOS-Microsoft-Graph-SDK */,
+				D3DC73D91CCEC49F00C1DF18 /* ios-objectivec-connect-sample */,
 			);
 		};
 /* End PBXProject section */
@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.O365-iOS-Microsoft-Graph-SDK";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.ios-objectivec-connect-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -434,7 +434,7 @@
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "O365-iOS-Microsoft-Graph-SDK/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.O365-iOS-Microsoft-Graph-SDK";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microsoft.ios-objectivec-connect-sample";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -442,7 +442,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "O365-iOS-Microsoft-Graph-SDK" */ = {
+		D3DC73D51CCEC49F00C1DF18 /* Build configuration list for PBXProject "ios-objectivec-connect-sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3DC73EF1CCEC49F00C1DF18 /* Debug */,
@@ -451,7 +451,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "O365-iOS-Microsoft-Graph-SDK" */ = {
+		D3DC73F11CCEC49F00C1DF18 /* Build configuration list for PBXNativeTarget "ios-objectivec-connect-sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3DC73F21CCEC49F00C1DF18 /* Debug */,
