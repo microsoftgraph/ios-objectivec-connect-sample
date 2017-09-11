@@ -39,7 +39,6 @@
     
     [MSGraphClient setAuthenticationProvider:self.authenticationProvider.authProvider];
     self.graphClient = [MSGraphClient client];
-    [self getUserInfo];
     
 }
 
