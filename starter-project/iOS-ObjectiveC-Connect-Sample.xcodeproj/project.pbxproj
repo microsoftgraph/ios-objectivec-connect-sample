@@ -117,7 +117,7 @@
 				D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */,
 			);
 			name = "iOS-ObjectiveC-Connect-Sample";
-			path = "O365-iOS-Microsoft-Graph-SDK";
+			path = "ios-objectivec-connect-sample";
 			sourceTree = "<group>";
 		};
 		D3DC73DD1CCEC49F00C1DF18 /* Supporting Files */ = {
