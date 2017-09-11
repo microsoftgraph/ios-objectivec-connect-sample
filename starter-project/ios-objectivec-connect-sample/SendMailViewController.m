@@ -62,22 +62,28 @@
 
 #pragma mark - Helper Methods
 //Retrieve the logged in user's display name and email address
--(void) getUserInfo {
+-(void) getUserInfo: (NSString *)url completion:(void(^) ( NSError*))completionBlock{
+    
     [[[self.graphClient me]request]getWithCompletion:^(MSGraphUser *response, NSError *error) {
         if(!error){
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.emailAddress = response.mail;
+                self.emailAddress = response.userPrincipalName;
                 self.emailTextField.text = self.emailAddress;
                 self.headerLabel.text = [NSString stringWithFormat:(NSLocalizedString(@"HI_USER", comment "")), response.displayName];
                 self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_SUCCESS", comment: "");
             });
-
+            
+            completionBlock(nil);
         }
         else{
-            self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
-            NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.statusTextView.text =  NSLocalizedString(@"USER_INFO_LOAD_FAILURE", comment: "");
+                NSLog(NSLocalizedString(@"ERROR", ""), error.localizedDescription);
+            });
+            completionBlock(error);
         }
     }];
+    
 }
 
 
