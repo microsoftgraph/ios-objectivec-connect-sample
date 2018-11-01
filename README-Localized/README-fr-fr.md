@@ -2,7 +2,7 @@
 
 Microsoft Graph est un point de terminaison unifié pour accéder aux données, aux relations et aux connaissances fournies à partir du cloud Microsoft. Cet exemple montre comment se connecter et s’authentifier, puis appeler les API de messagerie et utilisateur via le [kit de développement logiciel Microsoft Graph pour iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
 
-> Remarque : Accédez au [portail d’inscription de l’application Microsoft Graph](https://apps.dev.microsoft.com) pour enregistrer plus facilement votre application et exécuter plus rapidement cet exemple.
+> Remarque : Consultez la page relative au [portail d’inscription de l’application Microsoft Graph](https://apps.dev.microsoft.com) pour enregistrer plus facilement votre application et exécuter plus rapidement cet exemple.
 
 ## <a name="prerequisites"></a>Conditions préalables
 * Téléchargement de [Xcode](https://developer.apple.com/xcode/downloads/) d’Apple.
@@ -34,22 +34,33 @@ Microsoft Graph est un point de terminaison unifié pour accéder aux données, 
 
         pod install
 
-   Pour plus d’informations, consultez **Utilisation de CocoaPods** dans [Ressources supplémentaires](#AdditionalResources).
+   Pour plus d’informations, consultez la ressource **Utilisation de CocoaPods** dans [Ressources supplémentaires](#AdditionalResources).
 
-3. Ouvrez **O365-iOS-Microsoft-Graph-SDK.xcworkspace**.
+3. Ouverture de **ios-objectivec-sample.xcworkspace**
 4. Ouvrez **AuthenticationConstants.m**. Vous verrez que l’**ID client** du processus d’inscription peut être ajouté à la partie supérieure du fichier :
 
+   ```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+   ```
 
-    > Remarque : Vous remarquerez que les étendues d’autorisations suivantes ont été configurées pour ce projet : **« https://graph.microsoft.com/Mail.Send », « https://graph.microsoft.com/User.Read », « offline_access »**. Les appels de service utilisés dans ce projet, l’envoi d’un courrier électronique à votre compte de messagerie et la récupération des informations de profil (nom d’affichage, adresse e-mail) ont besoin de ces autorisations pour que l’application s’exécute correctement.
+
+    Notez que les étendues d’autorisation suivantes ont été configurées pour ce projet : 
+
+```@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"```
+    
+
+    
+>Remarque : les appels de service utilisés dans ce projet, l’envoi d’un courrier électronique à votre compte de messagerie, le chargement d’une image vers OneDrive et la récupération des informations de profil (nom d’affichage, adresse e-mail, photo de profil) ont besoin de ces autorisations pour que l’application s’exécute correctement.
 
 5. Exécutez l’exemple. Vous êtes invité à vous connecter/authentifier à un compte de messagerie personnel ou professionnel, puis vous pouvez envoyer un message à ce compte ou à un autre compte de messagerie sélectionné.
 
 
-##<a name="code-of-interest"></a>Code d’intérêt
+## <a name="code-of-interest"></a>Code d’intérêt
 
 Tout le code d’authentification peut être affiché dans le fichier **AuthenticationProvider.m**. Nous utilisons un exemple d’implémentation de MSAuthenticationProvider étendu de [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) pour prendre en charge la connexion des applications natives inscrites, l’actualisation automatique des jetons d’accès et la fonctionnalité de déconnexion :
+
+```objectivec
 
         [[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
             if (!error) {
@@ -57,17 +68,65 @@ Tout le code d’authentification peut être affiché dans le fichier **Authenti
             self.client = [MSGraphClient client];
              }
         }];
+```
 
+Une fois le fournisseur d’authentification défini, nous pouvons créer et initialiser un objet client (MSGraphClient) qui sert à effectuer des appels auprès du point de terminaison du service Microsoft Graph (courrier et utilisateurs). Dans **SendMailViewcontroller.m**, nous pouvons obtenir la photo de profil de l’utilisateur, la charger vers OneDrive, assembler une demande de messagerie avec une image en pièce jointe et l’envoyer en utilisant le code suivant :
 
-Une fois le fournisseur d’authentification défini, nous pouvons créer et initialiser un objet client (MSGraphClient) qui sert à effectuer des appels par rapport au point de terminaison du service Microsoft Graph (courrier et utilisateurs). Dans **SendMailViewcontroller.m** nous pouvons assembler une requête de messagerie et l’envoyer en utilisant le code suivant :
+### <a name="get-the-users-profile-picture"></a>Obtention de l’image de profil de l’utilisateur
 
+```objectivec
+[[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } 
+    }];
+```
+### <a name="upload-the-picture-to-onedrive"></a>Chargement de l’image vers OneDrive
+
+```objectivec
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } 
+    }];
+
+```
+### <a name="add-picture-attachment-to-a-new-email-message"></a>Ajout d’une image en pièce jointe à un nouveau message électronique
+
+```objectivec
+   MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
+```
+
+### <a name="send-the-mail-message"></a>Envoi du message électronique
+
+```objectivec
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
     }];
+```
 
-
-Pour plus d’informations, y compris le code d’appel à d’autres services, tels que OneDrive, voir la section [Kit de développement logiciel Microsoft Graph pour iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
+Pour plus d’informations, y compris le code d’appel à d’autres services, tels que OneDrive, reportez-vous à la section [Kit de développement logiciel Microsoft Graph pour iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
 
 ## <a name="questions-and-comments"></a>Questions et commentaires
 

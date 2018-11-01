@@ -36,20 +36,31 @@ Microsoft Graph 是存取資料的統一端點、來自 Microsoft 雲端的關�
 
    如需詳細資訊，請參閱[其他資訊](#AdditionalResources)中的**使用 CocoaPods**
 
-3. 開啟 **O365-iOS-Microsoft-Graph-SDK.xcworkspace**
+3. 開啟 **ios-objectivec-sample.xcworkspace**
 4. 開啟 **AuthenticationConstants.m**。您會發現註冊程序的 **ClientID** 可以新增至檔案頂端：
 
+   ```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+   ```
 
-    > 附註：您會注意到已針對此專案設定下列權限範圍：**"https://graph.microsoft.com/Mail.Send"、"https://graph.microsoft.com/User.Read"、"offline_access"**服務呼叫在此專案中使用，將郵件傳送至您的郵件帳戶並且擷取一些設定檔資訊 (顯示名稱、電子郵件地址) 需要這些權限才能讓應用程式適當地執行。
+
+    您會發現已為此專案設定下列權限範圍： 
+
+```@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"```
+    
+
+    
+>附註：服務呼叫在此專案中使用，將郵件傳送至您的郵件帳戶、上傳圖片至 OneDrive，並且擷取一些設定檔資訊 (顯示名稱、電子郵件地址、設定檔圖片) 需要這些權限才能讓應用程式適當地執行。
 
 5. 執行範例。系統會要求您連接/驗證工作或個人郵件帳戶，然後您才可以將郵件傳送至該帳戶，或者傳送至其他選取的電子郵件帳戶。
 
 
-##<a name="code-of-interest"></a>感興趣的程式碼
+## <a name="code-of-interest"></a>感興趣的程式碼
 
 所有的驗證程式碼可以在 **AuthenticationProvider.m** 檔案中檢視。我們使用從 [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) 延伸的 MSAuthenticationProvider 的範例實作，以提供已註冊原生應用程式的登入支援、自動重新整理存取權杖，以及登出功能：
+
+```objectivec
 
         [[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
             if (!error) {
@@ -57,15 +68,63 @@ Microsoft Graph 是存取資料的統一端點、來自 Microsoft 雲端的關�
             self.client = [MSGraphClient client];
              }
         }];
+```
 
+一旦設定驗證提供者，我們可以建立和初始化用戶端物件 (MSGraphClient)，用來針對 Microsoft Graph 服務端點 (郵件和使用者) 進行呼叫。在 **SendMailViewcontroller.m** 中，我們可以使用下列程式碼取得使用者圖片、加以上傳至 OneDrive、組合郵件要求與圖片附件，並且傳送它︰
 
-一旦設定驗證提供者，我們可以建立和初始化用戶端物件 (MSGraphClient)，用來針對 Microsoft Graph 服務端點 (郵件和使用者) 進行呼叫。在 **SendMailViewcontroller.m** 中，我們可以使用下列程式碼組合郵件要求並且傳送它︰
+### <a name="get-the-users-profile-picture"></a>取得使用者的設定檔圖片
 
+```objectivec
+[[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } 
+    }];
+```
+### <a name="upload-the-picture-to-onedrive"></a>將圖片上傳到 OneDrive
+
+```objectivec
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } 
+    }];
+
+```
+### <a name="add-picture-attachment-to-a-new-email-message"></a>新增圖片附件到新的電子郵件
+
+```objectivec
+   MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
+```
+
+### <a name="send-the-mail-message"></a>傳送郵件
+
+```objectivec
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
     }];
-
+```
 
 如需詳細資訊，包括用來呼叫至其他服務 (像是 OneDrive) 的程式碼，請參閱 [Microsoft Graph SDK for iOS](https://github.com/microsoftgraph/msgraph-sdk-ios)
 
