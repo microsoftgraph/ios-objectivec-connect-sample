@@ -36,20 +36,31 @@ O Microsoft Graph é um ponto de extremidade unificado para acessar dados, rela�
 
    Para saber mais, confira o artigo **Usar o CocoaPods** em [Recursos Adicionais](#AdditionalResources)
 
-3. Abrir **O365-iOS-Microsoft-Graph-SDK.xcworkspace**
+3. Abra **ios-objectivec-sample.xcworkspace**
 4. Abra **AuthenticationConstants.m**. Observe que você pode adicionar o valor de **ClientID** do processo de registro, na parte superior do arquivo.
 
+   ```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+   ```
 
-    > Observação: Você notará que foram configurados os seguintes escopos de permissão para esse projeto: **"https://graph.microsoft.com/Mail.Send", "https://graph.microsoft.com/User.Read", "offline_access"**. As chamadas de serviço usadas neste projeto, que enviam emails para sua conta de email e recuperam algumas informações de perfil (Nome de Exibição, Endereço de Email) exigem essas permissões para que o aplicativo seja executado corretamente.
+
+    Os escopos de permissão a seguir foram configurados para esse projeto: 
+
+```@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"```
+    
+
+    
+>Observação: as chamadas de serviço usadas neste projeto, que enviam emails para sua conta de email, carregam imagens para o OneDrive e recuperam algumas informações de perfil (nome de exibição, endereço de email, imagem do perfil) exigem essas permissões para que o aplicativo seja executado corretamente.
 
 5. Execute o exemplo. Você será solicitado a conectar/autenticar uma conta de email comercial ou pessoal e, em seguida, poderá enviar um email a essa conta ou a outra conta de email selecionada.
 
 
-##<a name="code-of-interest"></a>Código de Interesse
+## <a name="code-of-interest"></a>Código de Interesse
 
 Todo código de autenticação pode ser visualizado no arquivo **AuthenticationProvider.m**. Usamos um exemplo de implementação do MSAuthenticationProvider estendida do [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) para fornecer suporte de logon a aplicativos nativos registrados, atualização automática de tokens de acesso e recursos de logoff:
+
+```objectivec
 
         [[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
             if (!error) {
@@ -57,15 +68,63 @@ Todo código de autenticação pode ser visualizado no arquivo **AuthenticationP
             self.client = [MSGraphClient client];
              }
         }];
+```
 
+Depois que o provedor de autenticação estiver definido, podemos criar e inicializar um objeto de cliente (MSGraphClient) que será usado para fazer chamadas no ponto de extremidade do serviço do Microsoft Graph (email e usuários). Em **SendMailViewcontroller.m**, podemos obter a imagem do perfil do usuário, carregá-la para o OneDrive, montar uma solicitação de email com anexo de imagem e enviá-la usando o seguinte código:
 
-Depois que o provedor de autenticação estiver definido, podemos criar e inicializar um objeto de cliente (MSGraphClient) que será usado para fazer chamadas no ponto de extremidade do serviço do Microsoft Graph (email e usuários). Em **SendMailViewcontroller.m**, podemos montar uma solicitação de email e enviá-la usando o seguinte código:
+### <a name="get-the-users-profile-picture"></a>Obter a imagem do perfil do usuário
 
+```objectivec
+[[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } 
+    }];
+```
+### <a name="upload-the-picture-to-onedrive"></a>Carregar imagem para o OneDrive
+
+```objectivec
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } 
+    }];
+
+```
+### <a name="add-picture-attachment-to-a-new-email-message"></a>Adicionar anexo de imagem a uma nova mensagem de email
+
+```objectivec
+   MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
+```
+
+### <a name="send-the-mail-message"></a>Enviar a mensagem de email
+
+```objectivec
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
     }];
-
+```
 
 Para obter mais informações, incluindo código para chamar outros serviços, como o OneDrive, confira o [SDK do Microsoft Graph para iOS](https://github.com/microsoftgraph/msgraph-sdk-ios)
 

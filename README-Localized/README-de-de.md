@@ -36,20 +36,31 @@ Microsoft Graph ist ein einheitlicher Endpunkt für den Zugriff auf Daten, Bezie
 
    Weitere Informationen finden Sie im Thema über das **Verwenden von CocoaPods** in [Zusätzliche Ressourcen](#AdditionalResources).
 
-3. Öffnen Sie **O365-iOS-Microsoft-Graph-SDK.xcworkspace**.
+3. Öffnen Sie **Ios-Objectivec-sample.xcworkspace**.
 4. Öffnen Sie **AuthenticationConstants.m**. Sie werden sehen, dass die **ClientID** aus dem Registrierungsprozess am Anfang der Datei hinzugefügt werden kann:
 
+   ```objectivec
         // You will set your application's clientId
         NSString * const kClientId    = @"ENTER_YOUR_CLIENT_ID";
+   ```
 
-    > Hinweis: Sie sehen, dass die folgenden Berechtigungsbereiche für dieses Projekt konfiguriert wurden: **"https://graph.microsoft.com/Mail.Send", "https://graph.microsoft.com/User.Read", "Offline_access"**. Die in diesem Projekt verwendeten Dienstaufrufe, also das Senden einer E-Mail an Ihr E-Mail-Konto und das Abrufen einiger Profilinformationen (Anzeigename, E-Mail-Adresse) benötigen diese Berechtigungen, damit die App ordnungsgemäß ausgeführt wird.
+
+    Sie stellen fest, dass die folgenden Berechtigungsumfänge für dieses Projekt konfiguriert wurden: 
+
+```@"https://graph.microsoft.com/User.Read, https://graph.microsoft.com/Mail.ReadWrite, https://graph.microsoft.com/Mail.Send, https://graph.microsoft.com/Files.ReadWrite"```
+    
+
+    
+>Die in diesem Projekt verwendeten Dienstaufrufe, also das Senden einer E-Mail an Ihr E-Mail-Konto, das Hochladen eines Bilds in OneDrive und das Abrufen einiger Profilinformationen (Anzeigename, E-Mail-Adresse. Profilbild), benötigen diese Berechtigungen, damit die App ordnungsgemäß ausgeführt wird.
 
 5. Führen Sie das Beispiel aus. Sie werden aufgefordert, eine Verbindung zu einem geschäftlichen oder persönlichen E-Mail-Konto herzustellen oder zu authentifizieren. Dann können Sie eine E-Mail an dieses Konto oder an ein anderes ausgewähltes E-Mail-Konto senden.
 
 
-##<a name="code-of-interest"></a>Interessanter Code
+## <a name="code-of-interest"></a>Interessanter Code
 
 Der gesamte Authentifizierungscode kann in der Datei **AuthenticationProvider.m** angezeigt werden. Wir verwenden eine Beispielimplementierung von MSAuthenticationProvider, die über [NXOAuth2Client](https://github.com/nxtbgthng/OAuth2Client) hinaus erweitert wurde, um Anmeldeinformationen für registrierte systemeigene Apps, eine automatische Aktualisierung von Zugriffstoken sowie eine Abmeldefunktion bereitzustellen:
+
+```objectivec
 
         [[NXOAuth2AuthenticationProvider sharedAuthProvider] loginWithViewController:nil completion:^(NSError *error) {
             if (!error) {
@@ -57,17 +68,65 @@ Der gesamte Authentifizierungscode kann in der Datei **AuthenticationProvider.m*
             self.client = [MSGraphClient client];
              }
         }];
+```
 
+Nachdem der Authentifizierungsanbieter festgelegt wurde, können wir ein Clientobjekt (MSGraphClient) erstellen und initialisieren, das für Aufrufe des Microsoft Graph-Dienstendpunkts (E-Mail und Benutzer) verwendet wird. In **SendMailViewcontroller.swift** können wir das Benutzerprofilbild abrufen, dieses in OneDrive hochladen, eine E-Mail-Anforderung mit Bildanhang erstellen und diese mit dem folgenden Code senden:
 
-Nachdem der Authentifizierungsanbieter festgelegt wurde, können wir ein Clientobjekt (MSGraphClient) erstellen und initialisieren, das für Aufrufe des Microsoft Graph-Dienstendpunkts (E-Mail und Benutzer) verwendet wird. In **SendMailViewcontroller.swift** können wir eine E-Mail-Anforderung erstellen und diese mithilfe des folgenden Codes senden:
+### <a name="get-the-users-profile-picture"></a>Die URL des Profilbilds des Benutzers abrufen
 
+```objectivec
+[[[self.graphClient me] photoValue] downloadWithCompletion:^(NSURL *location, NSURLResponse *response, NSError *error) {
+        //code
+        if (!error) {
+            NSData *data = [NSData dataWithContentsOfURL:location];
+            UIImage *img = [[UIImage alloc] initWithData:data];
+                            completionBlock(img, error);
+        } 
+    }];
+```
+### <a name="upload-the-picture-to-onedrive"></a>Hochladen des Bilds in OneDrive
+
+```objectivec
+    NSData *data = UIImagePNGRepresentation(image);
+    [[[[[[[self.graphClient me]
+          drive]
+         root]
+        children]
+       driveItem:(@"me.png")]
+      contentRequest]
+     uploadFromData:(data) completion:^(MSGraphDriveItem *response, NSError *error) {
+         
+         if (!error) {
+             NSString *webUrl = response.webUrl;
+             completionBlock(webUrl, error);
+         } 
+    }];
+
+```
+### <a name="add-picture-attachment-to-a-new-email-message"></a>Hinzufügen einer Bildanhang zu einer neuen E-Mail-Nachricht
+
+```objectivec
+   MSGraphFileAttachment *fileAttachment= [[MSGraphFileAttachment alloc]init];
+    fileAttachment.oDataType = @"#microsoft.graph.fileAttachment";
+    fileAttachment.contentType = @"image/png";
+    
+    NSString *decodedString = [UIImagePNGRepresentation(self.userPicture) base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    fileAttachment.contentBytes = decodedString;
+    fileAttachment.name = @"me.png";
+    message.attachments = [message.attachments arrayByAddingObject:(fileAttachment)];
+```
+
+### <a name="send-the-mail-message"></a>Senden der E-Mail-Nachricht
+
+```objectivec
     MSGraphUserSendMailRequestBuilder *requestBuilder = [[self.client me]sendMailWithMessage:message saveToSentItems:true];    
     MSGraphUserSendMailRequest *mailRequest = [requestBuilder request];   
     [mailRequest executeWithCompletion:^(NSDictionary *response, NSError *error) {      
     }];
+```
 
-
-Weitere Informationen, einschließlich des Codes zum Aufrufen anderer Dienste wie OneDrive, finden Sie im [Microsoft Graph-SDK für iOS](https://github.com/microsoftgraph/msgraph-sdk-ios)
+Weitere Informationen, einschließlich des Codes zum Aufrufen anderer Dienste wie OneDrive, finden Sie im [Microsoft Graph-SDK für iOS](https://github.com/microsoftgraph/msgraph-sdk-ios).
 
 ## <a name="questions-and-comments"></a>Fragen und Kommentare
 
